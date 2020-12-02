@@ -2,8 +2,8 @@
 ## Kuzgun Blog 
 Asp .net Framework ve Angular 10 ile hazırlanmış blog sitesi
 ## Kullanılan teknolojiler;
-- Asp .net Framework
-- .net Framework Identity
+- .Net Framework
+- .Net Framework Identity
 - Owin 
 - Jwt Authentication
 - Automapper
