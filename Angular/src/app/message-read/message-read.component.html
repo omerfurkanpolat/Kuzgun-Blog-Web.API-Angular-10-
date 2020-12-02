@@ -1,0 +1,33 @@
+<div *ngIf="isAdmin()" class="container mt-5 mb-5">
+    <h3>Mesajlar</h3>
+    <hr>
+    <div class="row">
+        <div class="col-md-2">
+            <app-admin-options></app-admin-options>
+        </div>
+        <div class="offset-md-1 col-md-9">
+            <div>
+                <h5>Kategori Listesi</h5>
+                <hr>
+            </div>
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>İsim Soyisim</th>
+                            <th>Mesajın Konusu</th>
+                            <th></th>
+                          
+                        </tr>
+                    </thead>
+                    <tbody class="table " *ngFor="let message of messages">
+                        <tr>
+                           <td>{{message.fullName}}</td>
+                           <td>{{message.messageHeader}}</td>
+                           <td><button type="button" class="btn square_btn"
+                            [routerLink]="['/messageread/messagedetail/'+ message.messageId]">Detaylar</button></td>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

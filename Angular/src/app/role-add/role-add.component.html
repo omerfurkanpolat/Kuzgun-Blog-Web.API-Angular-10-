@@ -1,0 +1,29 @@
+<div *ngIf="isAdmin()" class="container mt-5">
+    <h3>Rolleri Düzenle</h3>
+    <hr>
+    <div class="row">
+        <div class="col-md-2">
+            <app-admin-options></app-admin-options>
+        </div>
+        <div class="offset-md-1 col-md-9">
+            <h5>Rol Ekle</h5>
+            <hr>
+            <div class="mt-4">            
+                <form #addingRole="ngForm" (ngSubmit)="addRole()" >
+                    <div class="form-group  col-md-6">
+                        <label for="roleName" style="font-weight: bold;">Rol ismini giriniz</label>
+                        <input type="text" required class="form-control"  #name="ngModel" name="name" [(ngModel)]="model.name"
+                            placeholder="">
+                            <div class="alert alert-danger mt-2" *ngIf="name.invalid ">
+                                <p *ngIf="name.errors.required">Rol adı alanını doldurunuz</p>                                
+                            </div>
+                    </div>
+                    <div class="col-md-4">
+                        <button [disabled]="addingRole.invalid " class="btn square_btn" type="submit">Ekle</button>
+                    </div>
+                </form>
+                
+            </div>
+            
+    </div>
+</div>

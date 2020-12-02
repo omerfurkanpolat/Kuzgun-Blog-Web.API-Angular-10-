@@ -1,0 +1,21 @@
+<div class="col-md-3 mx-auto mt-5">
+    <div class="text-center mb-4">
+        <h1 class="h3 mb-3 font-weight-normal">Giriş Yap</h1>
+        <hr>
+    </div>
+    <form #form="ngForm" class=" mt-2 mt-md-0" (ngSubmit)="login()">
+        <div required class="form-label-group mb-3">
+            <input #email="ngModel" class="form-control " required  type="text" 
+                name="userName" placeholder="Kullanıcı Adınızı Giriniz" [(ngModel)]="model.userName" required autofocus>
+        </div>
+        <div required class="form-label-group mb-3">
+            <input #password="ngModel" class="form-control " id="inputPassword" required minlength="6"
+                type="password" name="password" placeholder="Şifrenizi Giriniz" [(ngModel)]="model.password">
+        </div>
+        <diV class="mb-3 text-right">
+            <a class="text-muted" [routerLink]="['/forgotpassword']" >Şifremi unuttum</a>
+        </diV>
+        
+        <button class="btn btn-lg square_btn-success  btn-block" type="submit" >Giriş Yap</button>
+    </form>
+</div>

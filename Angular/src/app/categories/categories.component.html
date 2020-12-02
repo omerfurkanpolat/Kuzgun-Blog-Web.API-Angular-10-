@@ -1,0 +1,52 @@
+<div *ngIf="isAdmin()" class="container mt-5">
+    <h3>Kategoriler</h3>
+    <hr>
+    <div class="row">
+        <div class="col-md-2">
+            <app-admin-options></app-admin-options>
+        </div>
+        <div class="offset-md-1 col-md-9">
+            <h5>Kategori Listesi</h5>
+            <hr>
+            <div class="mb-3" style="float:right;">
+                <button type="button" class="btn square_btn " [routerLink]="['/categories/categoryAdd']"
+                   >Kategori
+                    Ekle</button>
+            </div>
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Kategori Adı</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="table " *ngFor="let category of categories">
+                        <tr>
+                            <td>{{category.categoryId}}</td>
+                            <td>{{category.categoryName}}</td>
+                            <td><button type="button" class="btn square_btn-detail "
+                                    [routerLink]="['/categories/categorydetail/'+ category.categoryId]"
+                                    >Detaylar</button>
+                            </td>
+                            <td><button type="button" class="btn square_btn-success"
+                                    [routerLink]="['/categories/updateCategory/'+ category.categoryId]"
+                                    >Güncelle</button>
+                            </td>
+                            <td><button type="button" class="btn square_btn-danger " [routerLink]="['/home']"
+                                    (click)="deleteCategory(category.categoryId)"
+                                   >Sil</button></td>
+                            <td><button type="button " class="btn square_btn "
+                                    [routerLink]="['/categories/'+category.categoryId+'/subCategoryAdd']"
+                                   >Alt Kategori
+                                    Ekle</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

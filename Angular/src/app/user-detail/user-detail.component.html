@@ -1,0 +1,70 @@
+<div *ngIf="isAdmin()" class="container mt-5">
+    <h3>KULLANICI PANELİ</h3>
+    <hr>
+    <div class="row">
+        <div class="col-md-2">
+            <app-admin-options></app-admin-options>
+        </div>
+        <div class="offset-md-1 col-md-9">
+            <diV>
+                <h5>Kullanıcı Bilgileri</h5>
+                <hr>
+            </diV>
+            <div class="row">
+                <div>
+                    <div>
+                        <label for="username" style="font-weight: bold;">Kullanıcı Adı: </label>
+                        <label class="text-muted"> {{ user.userName}}</label>
+                    </div>
+                    <div>
+                        <label for="email" style="font-weight: bold;">Email Adresi: </label>
+                        <label class="text-muted"> {{ user.email}}</label>
+                    </div>                
+                    <div>
+                        <label for="dateRegistered" style="font-weight: bold;">Kayıt Olduğu Tarih: </label>
+                        <label class="text-muted"> {{ user.dateRegistered |date: "dd.MM.y"}}</label>
+                    </div>
+                    <div>
+                        <label for="lastActive" style="font-weight: bold;">Son Aktif Olduğu Tarih: </label>
+                        <label class="text-muted"> {{ user.lastActive |date: "dd.MM.y"}}</label>
+                    </div>
+                    <div  >
+                        <label for="lastActive" style="font-weight: bold;">Kullanıcının Rolü: </label>
+                        <label class="text-muted">{{user.userRole}} </label>
+                    </div>
+                    <div  >
+                        <label for="lastActive" style="font-weight: bold;">Hesap Kullanıma: </label>
+                        <label class="text-muted" *ngIf="user.isDeleted==true">Kapatıldı</label>
+                        <label class="text-muted" *ngIf="user.isDeleted==false">Açık</label>
+                    </div>
+                </div>
+                <div class="mx-auto"> 
+                    <div>
+                        <h6>Kullanıcın Rolünü Seçiniz</h6>
+                        <hr>
+                    </div>                   
+                    <div >
+                        <form (ngSubmit)="changeUserRole(user.id)">                       
+                            <div class="form-group">
+                                <div class="input-group mb-3 ">
+                                    <select class="custom-select" #name="ngModel" name="name"
+                                        [(ngModel)]="model.name" >
+                                        <option *ngFor="let role of roles" [ngValue]="role.name">
+                                            {{role.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="btn square_btn " style="float: right;" type="submit">Rolü Değiştir</button>
+                        </form>
+                    </div>                     
+                </div>
+                <div class="mt-5" >
+                    <button type="button" class="btn square_btn-danger" (click)="deleteUser()">Hesabı Kullanıma Kapat</button>
+                </div>
+            </div>
+            <hr>
+            <h6>Kullanıcı ile ilgili diğer bilgiler getirilebilir</h6>
+
+        </div>
+    </div>
+</div>

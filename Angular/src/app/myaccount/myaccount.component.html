@@ -1,0 +1,87 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-2">
+            <h3>HESABIM</h3>
+            <hr>
+            <a class="text-muted mb-5 "> <i class="fas fa-user"></i> Sayın {{authService.decodedToken.unique_name}}</a>
+            <br>
+            <br>
+            <a class="text-muted  " style="text-decoration:none;"
+                [routerLink]="['/myaccount/', authService.decodedToken.nameid ]"> <i class="fas fa-sliders-h"></i>
+                Bilgilerim</a>
+        </div>
+        <div class="offset-md-1 col-md-9">
+            <h3>HAKKIMDA</h3>
+            <hr>
+            <div class="mt-4">
+                <form #editProfilePicture="ngForm" (ngSubmit)="changeProfilePicture()">
+                    <div class="form-group  col-md-6">
+                        <label for="text" style="font-weight: bold;">Profil Resmi Urlsi</label>
+                        <input type="text" required  class="form-control" name="imageUrl" #imageUrl="ngModel" [(ngModel)]="user.imageUrl"
+                            placeholder="{{user.imageUrl}}">
+                    </div>
+                    <div class="col-md-6" >
+                        <button [disabled]="editProfilePicture.invalid" class="btn square_btn " style="float: right;" >Değiştir</button>
+                    </div>
+                    
+                </form>               
+            </div>
+            <div class="mt-5">
+                <hr>
+            </div>
+            <div class="mt-4">
+                <form #editEmail="ngForm" (ngSubmit)="changeEmail()">
+                    <div class="form-group  col-md-6">
+                        <label for="Email" style="font-weight: bold;">Email Adresiniz</label>
+                        <input type="text" required email class="form-control" name="email" [(ngModel)]="user.email"
+                            placeholder="{{user.email}}">
+                    </div>
+                    <div class="col-md-6">
+                        <button [disabled]="editEmail.invalid" class="btn square_btn "  style="float: right;" >Değiştir</button>
+                    </div>
+                </form>
+               
+            </div>
+            <div class="mt-5">                
+                <hr>
+            </div>
+            <div class="mt-4">
+                <form #editPassword="ngForm" (ngSubmit)="changePassword()">
+                    <div class="form-group  col-md-6">
+                        <label for="oldpassword" style="font-weight: bold;">Mevcut Şifreniz</label>
+                        <input type="password" class="form-control" name="oldpassword" [(ngModel)]="model.oldpassword"
+                            placeholder="Mevcut Şifrenizi Giriniz">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="newPassword" style="font-weight: bold;">Yeni Şifreniz</label>
+                        <input required minlength="8" type="password" #newPassword="ngModel"
+                            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" [(ngModel)]="model.newPassword"
+                            name="newPassword" class="form-control" placeholder="Yeni Şifrenizi giriniz">
+                        <div class="alert alert-danger mt-2" *ngIf="newPassword.invalid && newPassword.touched">
+                            <p *ngIf="newPassword.errors.required">Şifre alanını doldurunuz</p>
+                            <p *ngIf="newPassword.errors.minlength">Şifreniz minimum 8 karakterli olmalıdır</p>
+                            <p *ngIf="newPassword.errors.pattern">Şifreniz büyük harf, küçük harf ve rakam
+                                içermelidir</p>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="confirmPassword" style="font-weight: bold;">Yeni Şifreniz</label>
+                        <input required minlength="8" type="password" #confirmPassword="ngModel"
+                            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" [(ngModel)]="model.confirmPassword"
+                            name="comfirmpassword" class="form-control" placeholder="Yeni Şifrenizi Tekrar Giriniz">
+                        <div class="alert alert-danger mt-2" *ngIf="confirmPassword.invalid && confirmPassword.touched">
+                            <p *ngIf="confirmPassword.errors.required">Şifre alanını doldurunuz</p>
+                            <p *ngIf="confirmPassword.errors.minlength">Şifreniz minimum 8 karakterli olmalıdır</p>
+                            <p *ngIf="confirmPassword.errors.pattern">Şifreniz büyük harf, küçük harf ve rakam
+                                içermelidir</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <button [disabled]="editPassword.invalid " class="btn  square_btn" style="float: right;" >Şifreyi
+                            Değiştir</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>

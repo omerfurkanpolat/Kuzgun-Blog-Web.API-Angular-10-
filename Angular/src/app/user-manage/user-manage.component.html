@@ -1,0 +1,36 @@
+<div *ngIf="isAdmin()" class="container mt-5 mb-5">
+    <h3>KULLANICI PANELİ</h3>
+    <hr>
+    <div class="row ">
+        <div class="col-md-2">
+            <app-admin-options></app-admin-options>
+        </div>
+        <div class="offset-md-1 col-md-9">
+            <h5>KULLANICILAR</h5>
+            <hr>
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Kullanıcı Adı</th>
+                            <th>Email Adresi</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="table " *ngFor="let user of users">
+                        <tr>
+                            <td>{{user.id}}</td>
+                            <td>{{user.userName}}</td>
+                            <td>{{user.email}}</td>
+
+                            <td><button type="button" class="btn square_btn "
+                                    [routerLink]="['/usermanage/userdetail', user.id]">Detaylar</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div *ngIf="isAdmin()" class="container mt-5">
+    <h3>Kategoriler</h3>
+    <hr>
+    <div class="row">
+        <div class="col-md-2">
+            <app-admin-options></app-admin-options>
+        </div>
+        <div class="offset-md-1 col-md-9">
+            <h5>Kategori Ekle</h5>
+            <hr>
+            <div>
+                <form #addingCategory="ngForm" (ngSubmit)="addCategory()">
+                    <div class="form-group col-md-6">
+                        <input required type="text" #categoryName="ngModel" [(ngModel)]="model.categoryName"
+                            name="categoryName" class="form-control" placeholder="Kategori Adını Giriniz">
+                        <div class="alert alert-danger mt-2" *ngIf="categoryName.invalid && categoryName.touched">
+                            <p *ngIf="categoryName.errors.required">Kategori adı alanını doldurunuz</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn square_btn " [disabled]="addingCategory.invalid " type="submit"
+                            style="float:right;">Kaydet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

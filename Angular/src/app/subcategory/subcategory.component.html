@@ -1,0 +1,26 @@
+<div *ngIf="isAdmin()" class="container mt-5">
+    <h3>Kategoriler</h3>
+    <hr>
+    <div class="row">
+        <div class="col-md-2">
+            <app-admin-options></app-admin-options>
+        </div>
+        <div class="offset-md-1 col-md-9">
+            <h5>Alt Kategori Güncelle</h5>
+            <hr>
+            <div class="mt-4">
+                <form #editEmail="ngForm" (ngSubmit)="updateSubCategory(subcategory.subCategoryId)">
+                    <div class="form-group  ">
+                        <label for="subCategoryName" style="font-weight: bold;">Alt Kategori Adı</label>
+                        <input type="text" required  class="form-control" name="subCategoryName" [(ngModel)]="subcategory.subCategoryName"
+                            placeholder="{{subcategory.subCategoryName}}">
+                    </div>
+                    <div >
+                        <button [disabled]="editEmail.invalid" class="btn square_btn-success">Değiştir</button>
+                    </div>
+                </form>
+                <hr>
+            </div>            
+            
+        </div>
+    </div>

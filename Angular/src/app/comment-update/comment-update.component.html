@@ -1,0 +1,15 @@
+<div class="card">    
+    <div class="card-body">     
+       <form (ngSubmit)="updateComment()">      
+        <div class="form-group">
+          <textarea required #comment="ngModel" name="comment" [(ngModel)]="postcomment.comment"
+              required rows="5" style="width: 100%;" >{{postcomment.comment}}</textarea>             
+          <div class="alert alert-danger mt-2" *ngIf="comment.invalid && comment.touched">
+              <p *ngIf="comment.errors.required">Mesaj alanını doldurunuz</p>
+          </div>
+      </div>                     
+          <button class="btn square_btn-success" style="float: right;" type="submit">Kaydet</button> 
+    </form> 
+    <button class="btn square_btn-danger"  type="submit" (click)="closeModal()">Kapat</button>   
+    </div>
+  </div>

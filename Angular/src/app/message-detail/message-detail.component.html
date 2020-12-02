@@ -1,0 +1,81 @@
+<div *ngIf="isAdmin()" class="container mt-5">
+    <h3>MESAJ PANELİ</h3>
+    <hr>
+    <div class="row">
+        <div class="col-md-2">
+            <app-admin-options></app-admin-options>
+        </div>
+        <div class="offset-md-1 col-md-9">
+            <diV>
+                <h5>Mesaj Ayrıntılar</h5>
+                <hr>
+            </diV>
+            <div>
+                <div>
+                    <label for="username" style="font-weight: bold;">Kullanıcı Adı: </label>
+                    <label class="text-muted"> {{ messagge.fullName}}</label>
+                </div>
+                <div>
+                    <label for="email" style="font-weight: bold;">Email Adresi: </label>
+                    <label class="text-muted"> {{ messagge.email}}</label>
+                </div>
+                <div>
+                    <label for="phoneNumber" style="font-weight: bold;">Mesajın Konusu: </label>
+                    <label class="text-muted"> {{ messagge.messageHeader}}</label>
+                </div>
+                <div>
+                    <label for="dateRegistered" style="font-weight: bold;">Mesaj </label>
+                    <hr>
+                    <p class="text-muted"> {{ messagge.messageBody}}</p>
+                </div>
+            </div>
+            <hr>
+            <div>
+                <div>
+                <h3>Mesajı Cevapla</h3>
+                <hr>
+            </div>
+            <div class=" col-md-6" >
+                <form   (ngSubmit)="sendMessage()">
+                    <div class="form-group ">
+                        <label for="username" style="font-weight: bold;">Adınız Soyadınız: </label>
+                        <input required type="text" #fullname="ngModel" [(ngModel)]="messagge.fullName" name="fullname"
+                            class="form-control" placeholder="Adınız Soyadınız">
+                        <div class="alert alert-danger mt-2" *ngIf="fullname.invalid && fullname.touched">
+                            <p *ngIf="fullname.errors.required">Kullanıcı adı alanını doldurunuz</p>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="Email" style="font-weight: bold;">Email Adresiniz: </label>
+                        <input required email type="text" #email="ngModel" [(ngModel)]="messagge.email" name="email"
+                            class="form-control" placeholder="Email">
+                        <div class="alert alert-danger mt-2" *ngIf="email.invalid && email.touched">
+                            <p *ngIf="email.errors.required">Email alanını doldurunuz</p>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="messageHeader" style="font-weight: bold;">Mesajın Konusu: </label>
+                        <input required type="text" #messageHeader="ngModel" [(ngModel)]="messagge.messageHeader"
+                            name="messageHeader" class="form-control" placeholder="Messajın Konusu">
+                        <div class="alert alert-danger mt-2" *ngIf="messageHeader.invalid && messageHeader.touched">
+                            <p *ngIf="messageHeader.errors.required">Messajın Başlığı alanını doldurunuz</p>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="messageBody" style="font-weight: bold;">Mesajınız: </label>
+                    </div>
+                    <div class="form-group">
+                        <textarea required #messageBody="ngModel" name="messageBody" [(ngModel)]="messagge.answer"
+                            required rows="5" cols="55"></textarea>
+                        <div class="alert alert-danger mt-2" *ngIf="messageBody.invalid && messageBody.touched">
+                            <p *ngIf="messageBody.errors.required">Şifre alanını doldurunuz</p>
+                        </div>
+                    </div>                
+                        <button class="btn square_btn " type="submit">Gönder</button>               
+                </form>
+            </div>
+            </div>
+
+        </div>
+    </div>
+</div>

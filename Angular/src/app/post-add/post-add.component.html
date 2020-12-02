@@ -1,0 +1,64 @@
+<div class="container mt-5">
+    <div>
+        <h4>Makale Ekle</h4>
+        <hr>
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            <form (ngSubmit)="postAdd()">
+                <div class="form-group ">
+                    <h4 style="font-weight: bold;" #userName="ngModel" [(ngModel)]="model.userName" name="userName">
+                        {{authService.decodedToken.unique_name}}</h4>
+                </div>
+                <div class="form-group ">
+                    <label for="title" style="font-weight: bold;">Makalenin Başlağı </label>
+                    <input required type="text" #title="ngModel" [(ngModel)]="model.title" name="title"
+                        class="form-control">
+                    <div class="alert alert-danger mt-2" *ngIf="title.invalid && title.touched">
+                        <p *ngIf="title.errors.required">Makale başlığı alanını doldurunuz</p>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label for="postTitle" style="font-weight: bold;">Resim Url'si</label>
+                    <input required type="text" #imageUrl="ngModel" [(ngModel)]="model.imageUrl" name="imageUrl"
+                        class="form-control">
+                    <div class="alert alert-danger mt-2" *ngIf="imageUrl.invalid && imageUrl.touched">
+                        <p *ngIf="imageUrl.errors.required">Resim Url alanını doldurunuz</p>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="messageBody" style="font-weight: bold;">Makale </label>
+                </div>
+                <div class="form-group ">
+                    <angular-editor required #body="ngModel" name="body" [placeholder]="'Enter text here...'"
+                        [(ngModel)]="model.body"></angular-editor>
+
+                    <div class="alert alert-danger mt-2" *ngIf="body.invalid && body.touched">
+                        <p *ngIf="body.errors.required">Mesaj alanını doldurunuz</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group mb-3 ">
+                        <select class="custom-select" #categoryId="ngModel" name="categoryId"
+                            [(ngModel)]="model.categoryId" (click)="getSubCategoryByCategoryId(model.categoryId)">
+                            <option *ngFor="let category of categories" [ngValue]="category.categoryId">
+                                {{category.categoryName}}</option>
+                                
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group mb-3 " >
+                        <select class="custom-select" #SubCategoryId="ngModel" name="subCategoryId"
+                            [(ngModel)]="model.subCategoryId">
+                            <option *ngFor="let subCategory of subCategories" [ngValue]="subCategory.subCategoryId">
+                                {{subCategory.subCategoryName}}</option>
+                        </select>
+                    </div>
+
+                </div>
+                <button class="btn square_btn" style="float: right;" type="submit">Yayınla</button>
+            </form>
+        </div>
+    </div>

@@ -1,0 +1,59 @@
+<div *ngIf="isAdmin()" class="container mt-5">
+    <h3>Kategoriler</h3>
+    <hr>
+    <div class="row">
+        <div class="col-md-2">
+            <app-admin-options></app-admin-options>
+        </div>
+        <div class="offset-md-1 col-md-9">
+            <div>
+                <h5>{{category.categoryName}} Kategorisi Detayları</h5>
+                <hr>
+            </div>
+            <div>               
+                
+                <div>
+                    <label for="username" style="font-weight: bold;">Kategori Adı : </label>
+                    <label class="text-muted"> {{ category.categoryName}}</label>
+                </div>          
+                <div>
+                    <label for="phoneNumber" style="font-weight: bold;">Oluşturulma Tarihi : </label>
+                    <label class="text-muted"> {{ category.dateCreated | date: "dd MMMM y  ": undefined : 'tr-TR'}}</label>
+                </div>          
+            </div>
+            <hr>
+            <div>
+                <h5>{{category.categoryName}} Kategorisinin Alt Kategorileri</h5>
+                <hr>
+            </div>
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Kategori Adı</th>
+                            <th></th>
+                            <th></th>
+
+                        </tr>
+                    </thead>
+                    <tbody class="table " *ngFor="let subcategory of subCategories">
+                        <tr>
+                            <td>{{subcategory.subCategoryId}}</td>
+                            <td>{{subcategory.subCategoryName}}</td>
+                            <td> <button type="button" class="btn square_btn-success"
+                                    [routerLink]="['/subcategory-update/'+ subcategory.subCategoryId]">Güncelle</button>
+                            </td>
+                           
+                            <td><button type="button" class="btn square_btn-danger" 
+                                 (click)="deleteSubCategory(subcategory.subCategoryId)">Sil</button>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>

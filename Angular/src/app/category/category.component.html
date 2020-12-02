@@ -1,0 +1,37 @@
+<div class="container mt-5">
+
+  <div class="mt-5" *ngFor="let p of posts | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize"> 
+    <div class="mt-5" class="row">
+      <div class="col-md-3">
+        <img src="{{p.imageUrl  || '../../../../assets/postImageNull.jpg'}}"
+          style="width: 100%;height: 200px;border-radius: 8%;" alt="">
+      </div>
+      <div class="col-md-9">
+        <h5 class="card-title" style="font-weight: bold;">{{p.title}}</h5>
+        <div><img src="{{p.userImageUrl  || '../../../../assets/users.jpg'}}" alt=""
+            style="width: 25px; height: 25px; border-radius: 50%;"><span> {{p.userName}} </span>
+          <span style="font-weight: bold;font-family:'Times New Roman', Times, serif;">Etiketler:</span>
+          <span> <a [routerLink]="['/category/'+p.categoryId]"> {{p.categoryName}}</a>,
+            <a [routerLink]="['/subcategory/'+p.subCategoryId]">{{p.subCategoryName}} </a>
+          </span>
+          <span style="font-weight: bold;">
+            Tarih:
+          </span>
+          <span
+            style="font-family:'Times New Roman', Times, serif;">{{p.dateCreated  |date: "dd MMMM y ": undefined : 'tr-TR'}}
+          </span>
+        </div>
+        <div>
+          <p class="lead my-3" [innerHTML]="p.body.slice(0,350).padEnd(353,'.') "></p>
+        </div>
+        <button type="button" class="btn square_btn" [routerLink]="['/post/'+p.postId]">Okumak için tıklayın </button>
+
+      </div>
+    </div>
+    <hr>
+  </div>
+  <div style="margin-left: 40%;" >
+    <ngb-pagination [collectionSize]="posts.length" [(page)]="page" [maxSize]="5" [rotate]="true" [ellipses]="false"
+      [boundaryLinks]="true"></ngb-pagination>
+  </div>
+</div>
