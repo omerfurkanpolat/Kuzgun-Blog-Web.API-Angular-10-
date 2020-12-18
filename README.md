@@ -1,6 +1,6 @@
 # Kuzgun-Blog-Web.API-Angular-10-
 ## Kuzgun Blog 
-Asp .net Framework ve Angular 10 ile hazırlanmış blog sitesi
+Asp .net Framework ve Angular 10 ile hazırlanmış ve geliştirilmekte olan blog sitesi
 ## Kullanılan teknolojiler;
 - .Net Framework
 - .Net Framework Identity
